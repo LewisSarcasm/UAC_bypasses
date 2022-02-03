@@ -4,7 +4,7 @@ target: odbcad32.exe
 
 UAC bypass
 
-create a new DLL project and past in the shellcmd.dll code and build. 
+create a new DLL project and past in the cmdshell.dll code and build. 
 
 As noted here: https://twitter.com/fkadibs/status/1489001994220101649
 
