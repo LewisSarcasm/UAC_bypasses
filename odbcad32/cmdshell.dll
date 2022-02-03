@@ -1,0 +1,43 @@
+// dllmain.cpp : Defines the entry point for the DLL application.
+#include "pch.h"
+#include <Windows.h>
+#include <stdlib.h>
+#include <iostream>
+#include <ShellAPI.h>
+
+BOOL APIENTRY DllMain( HMODULE hModule,
+                       DWORD  ul_reason_for_call,
+                       LPVOID lpReserved
+                     )
+{
+    STARTUPINFO si;
+    PROCESS_INFORMATION pi;
+
+    ZeroMemory(&si, sizeof(si));
+    si.cb = sizeof(si);
+    ZeroMemory(&pi, sizeof(pi));
+
+    switch (ul_reason_for_call)
+    {
+    case DLL_PROCESS_ATTACH:
+        break;
+    case DLL_THREAD_ATTACH:
+        MessageBox(0, L"HELLO1", 0, 0);
+        break;
+    case DLL_THREAD_DETACH:
+        MessageBox(0, L"HELLO2", 0, 0);
+        break;
+    case DLL_PROCESS_DETACH:
+        break;
+    }
+    MessageBox(0, L"HELL3O", 0, 0);
+    system("start cmd.exe /c start cmd.exe"); // spawn a shell
+    exit(3); // NOTE: will exit the application, remove if not what you want. 
+    return TRUE;
+}
+
+extern "C" __declspec(dllexport) void odbctrace()
+{
+    MessageBox(0, L"Hey there again!", 0, 0);
+}
+
